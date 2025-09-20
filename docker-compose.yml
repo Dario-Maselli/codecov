@@ -5,13 +5,13 @@ services:
     image: codecov/self-hosted-gateway:latest-calver #note: this is for setup purposes only, be sure to pin to the latest release from our changelog: https://docs.codecov.io/changelog
     volumes:
       - ./config:/config
-      #- ${CODECOV_SSL_CERT-/cert/codecov.crt}:/etc/codecov/ssl/certs/cert.crt:ro # uncomment if using ssl
+      - ${CODECOV_SSL_CERT-/cert/codecov.crt}:/etc/codecov/ssl/certs/cert.crt:ro # uncomment if using ssl
     ports:
-      - "${CODECOV_PORT-8080}:8080"
-      #- "${CODECOV_SSL_PORT-8443}:8443" # uncomment if using ssl
+      - "7562:8080"
+      - "7563:8443" # uncomment if using ssl
     environment:
       - CODECOV_GATEWAY_MINIO_ENABLED=true
-      #- CODECOV_GATEWAY_SSL_ENABLED=true # uncomment if using ssl
+      - CODECOV_GATEWAY_SSL_ENABLED=true # uncomment if using ssl
     networks:
       - codecov
     depends_on:
@@ -21,9 +21,9 @@ services:
   frontend:
     image: codecov/self-hosted-frontend:latest-calver #note: this is for setup purposes only, be sure to pin to the latest release from our changelog: https://docs.codecov.io/changelog
     environment:
-      - CODECOV_BASE_HOST=localhost:8080
-      - CODECOV_API_HOST=localhost:8080
-      - CODECOV_IA_HOST=localhost:8080
+      - CODECOV_BASE_HOST=localhost:7562
+      - CODECOV_API_HOST=localhost:7562
+      - CODECOV_IA_HOST=localhost:7562
       - CODECOV_SCHEME=http
     volumes:
       - ./config:/config

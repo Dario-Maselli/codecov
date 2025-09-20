@@ -10,7 +10,7 @@ setup:
   # https://docs.codecov.com/docs/configuration#instance-wide-admins
   admins:
     - service: github
-      username: "<your-user>"
+      username: "dario-maselli"
   # Replace with a random string
   # https://docs.codecov.io/docs/configuration#section-cookie-secret
   http:
