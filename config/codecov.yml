@@ -28,7 +28,7 @@ services:
   timeseries_database_url: "postgres://postgres:testpassword@timescale:5432/postgres"
   minio:
     host: minio
-    port: 9000
+    port: 7561
     auto_create_bucket: true
 # If using external storage. Comment above and uncomment below
 #    host: s3.amazonaws.com or storage.googleapis.com if using GCS
